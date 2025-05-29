@@ -1,5 +1,4 @@
 const Ship = require("../game-classes/ship.js");
-const test = require("node:test");
 
 describe("Ship", () =>{
   const ship = new Ship(3);
