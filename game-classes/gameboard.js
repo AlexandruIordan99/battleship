@@ -1,16 +1,33 @@
-class GameBoard{
-  constructor(x,y){
-    this.x = x;
-    this.y = y;
+class Gameboard{
+  constructor(){
+    this.board = Array(10)
+        .fill()
+        .map(() => new Array(10).fill(null))
+    this.missedAttacks= [];
+    this.receivedAttacks= [];
+    this.ships= [];
   }
 
-  createGameboard(){
+  placeShips(x, y, orientation, ship){
 
   }
 
-  registerHit(){
+  registerHit(x, y){
     return true;
   }
 
+  registerMiss(x, y){
+
+  }
+
+  reportSinking(){
+
+  }
+
+  areAllShipsSunk(){
+
+  }
 
 }
+
+module.exports = Gameboard;
