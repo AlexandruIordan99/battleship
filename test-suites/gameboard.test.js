@@ -41,7 +41,7 @@ describe('Gameboard testing suite', () => {
   })
 
   test("Ship orientation to coordinate relationship: horizontal", () => {
-    let horizontalShip = gameboard.randomizeShipLocation = () =>({x : 0,y : 0, orientation: "horizontal"});
+    gameboard.randomizeShipLocation = () =>({x : 0,y : 0, orientation: "horizontal"});
     const ship = new Ship(3); // Assuming Ship constructor accepts length
     gameboard.placeShips(ship);
     expect(gameboard.board[0][0]).toBe(ship);
@@ -51,7 +51,7 @@ describe('Gameboard testing suite', () => {
   })
 
   test("Ship orientation to coordinate relationship: vertical", () => {
-    let verticalShip = gameboard.randomizeShipLocation = () =>({x : 2, y : 2, orientation: "vertical"})
+    gameboard.randomizeShipLocation = () =>({x : 2, y : 2, orientation: "vertical"})
     const ship = new Ship(3); // Assuming Ship constructor accepts length
     gameboard.placeShips(ship);
     expect(gameboard.board[2][2]).toBe(ship);
