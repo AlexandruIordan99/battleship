@@ -60,4 +60,13 @@ describe('Gameboard testing suite', () => {
     expect(gameboard.ships).toContain(ship);
   })
 
+  test("Registering hits", () =>{
+    let result = gameboard.registerHit(0,0);
+
+    expect(result).toBe(false);
+    expect(gameboard.missedAttacks).toContainEqual([0, 0]);
+    expect(gameboard.receivedAttacks).toContainEqual([0, 0]);
+  })
+
+
 })
