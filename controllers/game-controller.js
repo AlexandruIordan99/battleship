@@ -11,15 +11,11 @@ let defendingPlayer = computerPlayer;
 const getActivePlayer = () => activePlayer;
 
 const togglePlayerStates = () => {
-  if (activePlayer === humanPlayer) {
-    activePlayer = computerPlayer;
-  } else if (activePlayer === computerPlayer) {
-    activePlayer = humanPlayer;
-  }
-  if(defendingPlayer === computerPlayer) {
-    defendingPlayer = humanPlayer;
-} else if (defendingPlayer === humanPlayer) {
-    defendingPlayer = computerPlayer;
-  }
-
+  activePlayer === humanPlayer ? computerPlayer : humanPlayer
+  defendingPlayer === humanPlayer ? computerPlayer : humanPlayer
 }
+
+
+
+
+
