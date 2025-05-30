@@ -60,7 +60,8 @@ class Gameboard{
       hitSquare.hit()
       return true;
     }
-    this.missedAttacks.push([y][x])
+    this.missedAttacks.push([y, x])
+    return false;
   }
 
 
