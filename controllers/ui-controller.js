@@ -10,7 +10,6 @@ import {
   getWinner,
   startGame,
 } from "./game-controller"
-import realPlayer from "../game-classes/gameboard";
 
 const grids = document.querySelectorAll(".grid-square");
 
@@ -33,3 +32,12 @@ const initializeGrids = () => {
   }
 }
 
+const showPlayerShips = () => {
+  for (let y = 0; y < humanPlayer.gameboard.board.length; y++) {
+    for (let x = 0; x < 10; x++) {
+      if (humanPlayer.gameboard.board[y][x]) {
+        grids[0].children[y * 10 + x].classList.add("grid-square-ship");
+      }
+    }
+  }
+}
