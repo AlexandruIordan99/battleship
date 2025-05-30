@@ -28,6 +28,11 @@ const populateGameboards = () => {
   placeShips(computerPlayer);
 }
 
+const playerAttack = (x, y, target) =>{
+  const playerAttack = computerPlayer.gameboard.registerHit(x,y);
+}
+
+
 
 
 
