@@ -1,3 +1,5 @@
+const ship = require("./gameboard");
+
 class Gameboard{
   constructor(){
     this.board = Array(10)
@@ -8,19 +10,37 @@ class Gameboard{
     this.ships= [];
   }
 
-  placeShips(ship){
-    let {x,y, orientation} = this.randomizeShipLocation()
-    if(orientation !== "vertical" && orientation !== "horizontal"){
+  placeShips(ship) {
+    let {x, y, orientation} = this.randomizeShipLocation() //x and y denote starting position
+    if (orientation !== "vertical" && orientation !== "horizontal") {
       throw new Error("Error: orientation must be vertical or horizontal.");
     }
 
-
-    if (orientation === "horizontal"){
+    if (orientation === "horizontal") {
+      let endCoordinate = x + ship.length;
+      if (endCoordinate > 10) {
+        throw new Error("Error: ship is outside bounds.")
+      }
+      for (let i = x; i < endCoordinate; i++) {
+        if(this.board[y][i] !==null) {
+          throw new Error("Error: a ship has already been placed there.")
+        }
+        this.board[y][i] = ship;
+      }
 
     } else if (orientation === "vertical") {
-
+      let endCoordinate = y + ship.length;
+      if (endCoordinate > 10) {
+        throw new Error("Error: ship is outside bounds.")
+      }
+      for (let i = y; i < endCoordinate; i++) {
+        if(this.board[i][x] !==null) {
+          throw new Error("Error: a ship has already been placed there.")
+        }
+        this.board[i][x] = ship
+      }
     }
-
+    this.ships.push(ship);
   }
 
   randomizeShipLocation(){
@@ -32,11 +52,13 @@ class Gameboard{
   }
 
   registerHit(x, y){
-    return true;
+
+    this.receivedAttacks.push(hit);
   }
 
   registerMiss(x, y){
 
+    this.missedAttacks.push(miss);
   }
 
   reportSinking(){
@@ -44,7 +66,8 @@ class Gameboard{
   }
 
   areAllShipsSunk(){
-
+    return this.ships.
+    every(ship => ship.isSunk());
   }
 
 }
