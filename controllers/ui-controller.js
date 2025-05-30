@@ -41,3 +41,34 @@ const showPlayerShips = () => {
     }
   }
 }
+
+const playerBoard = document.querySelector(".board--player .board__squares")
+const computerBoard = document.querySelector(".board--computer .board__squares")
+
+const registerComputerAttackingHuman = () =>{
+
+}
+
+const registerHumanAttackingComputer = () =>{
+
+}
+
+const displayWinner = () =>{
+
+}
+
+
+const restartGame = () => {
+
+}
+
+
+const resetButton = document.querySelector("#reset-button");
+
+export{
+  showPlayerShips,
+  initializeGrids,
+    registerComputerAttackingHuman,
+    registerHumanAttackingComputer,
+    displayWinner,
+}
