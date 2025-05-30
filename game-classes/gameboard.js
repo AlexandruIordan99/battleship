@@ -51,16 +51,16 @@ class Gameboard{
     return {x, y, orientation};
   }
 
-  registerHit(y, x){
-    const hitSquare = this.board[y][x];
+  registerHit(x,y){
+    const hitSquare = this.board[x][y];
 
-    this.receivedAttacks.push([y, x]);
+    this.receivedAttacks.push([x, y]);
 
     if (hitSquare) {
       hitSquare.hit()
       return true;
     }
-    this.missedAttacks.push([y, x])
+    this.missedAttacks.push([x, y])
     return false;
   }
 
