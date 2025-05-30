@@ -15,13 +15,19 @@ const togglePlayerStates = () => {
   defendingPlayer === humanPlayer ? computerPlayer : humanPlayer
 }
 
-const placeShips = () => {
+const placeShips = (player) => {
   const shipLengthArray = [2, 3, 3, 4, 5]
-  const player = getActivePlayer();
   for (const shipLength of shipLengthArray) {
     const ship = new Ship(shipLength);
     player.gameboard.placeShips(ship);
   }
 }
+
+const populateGameboards = () => {
+  placeShips(humanPlayer);
+  placeShips(computerPlayer);
+}
+
+
 
 
