@@ -1,5 +1,4 @@
 const Gameboard = require("../game-classes/gameboard");
-const Ship = require("../game-classes/ship");
 
 describe('Gameboard testing suite', () => {
   let gameboard = new Gameboard();
@@ -26,8 +25,15 @@ describe('Gameboard testing suite', () => {
     expect(gameboard.receivedAttacks).toEqual([]);
   })
 
-  test("Ship placement orientation", () =>{
-    expect(() => new Gameboard().placeShips(1,1, "five guys")
-        .toThrow("Error: orientation must be vertical or horizontal."));
+  test("Ship placement randomization", () =>{
+    const {x, y, orientation} = gameboard.randomizeShipLocation();
+    expect(x).toBeGreaterThanOrEqual(0);
+    expect(x).toBeLessThan(10);
+
+    expect(y).toBeGreaterThanOrEqual(0);
+    expect(y).toBeLessThan(10);
+
+    expect(["vertical", "horizontal"]).toContain(orientation);
   })
+
 })
