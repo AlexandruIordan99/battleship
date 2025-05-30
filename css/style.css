@@ -9,11 +9,15 @@ body{
   align-self: center;
   align-content: center;
   justify-content: center;
-  border: 1px solid red;
 }
 
-#gameContainer {
+.gameboard-container {
   display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 
-  border: 1px solid red;
+.alpha-coordinates{
+  display: flex;
+  gap: 30px;
 }
