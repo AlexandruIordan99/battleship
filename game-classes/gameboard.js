@@ -51,15 +51,18 @@ class Gameboard{
     return {x, y, orientation};
   }
 
-  registerHit(x, y){
+  registerHit(y, x){
+    const hitSquare = this.board[y][x];
 
-    this.receivedAttacks.push(hit);
+    this.receivedAttacks.push([y, x]);
+
+    if (hitSquare) {
+      hitSquare.hit()
+      return true;
+    }
+    this.missedAttacks.push([y][x])
   }
 
-  registerMiss(x, y){
-
-    this.missedAttacks.push(miss);
-  }
 
   reportSinking(){
 
