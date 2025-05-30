@@ -9,8 +9,6 @@ class Player {
     this.type = type;
     this.gameboard = new Gameboard();
   }
-
-
 }
 
 module.exports = Player;
