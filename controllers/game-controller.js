@@ -39,3 +39,14 @@ const getRandomCoordinates = () => {
   return [x, y]
 }
 
+const computerAttack = () =>{
+
+}
+
+const getWinner = () => {
+  if (defendingPlayer.gameboard.areAllShipsSunk() === true){
+    return activePlayer;
+  }
+}
+
+
