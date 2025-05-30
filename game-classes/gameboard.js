@@ -8,7 +8,16 @@ class Gameboard{
     this.ships= [];
   }
 
-  placeShips(x, y, orientation, ship){
+  placeShips(y, x, orientation, ship){
+    let i =Math.floor(Math.random()*10);
+    if(orientation !== "vertical" || orientation !== "horizontal"){
+      throw new Error("Error: orientation must be vertical or horizontal.");
+    }
+    if (orientation === "horizontal"){
+
+    } else if (orientation === "vertical") {
+
+    }
 
   }
 
