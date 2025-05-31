@@ -126,5 +126,8 @@ export{
   showPlayerShips,
   initializeGrids,
     registerComputerAttackingHuman,
+    registerHumanAttackingComputer,
     displayWinner,
+    hideResetButton,
+
 }
