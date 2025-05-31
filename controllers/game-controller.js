@@ -98,6 +98,21 @@ const startGame = () => {
   populateGameboards();
   initializeGrids();
   showPlayerShips();
+
+  const resultsDiv = document.querySelector(".game-results");
+  const winnerDiv = document.querySelector(".winner");
+
+  if (resultsDiv) {
+    resultsDiv.classList.add("game-results--hidden");
+  }
+  if (winnerDiv) {
+    winnerDiv.textContent = "";
+  }
+  const resetButton = document.getElementById("reset-button");
+  if (resetButton && resetButton.classList.contains("reset-button--hidden")) {
+    resetButton.classList.remove("reset-button--hidden");
+  }
+
 }
 
 
