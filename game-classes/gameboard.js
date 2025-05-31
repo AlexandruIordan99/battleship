@@ -11,37 +11,55 @@ class Gameboard{
   }
 
   placeShips(ship) {
-    let {x, y, orientation} = this.randomizeShipLocation() //x and y denote starting position
-    if (orientation !== "vertical" && orientation !== "horizontal") {
-      throw new Error("Error: orientation must be vertical or horizontal.");
-    }
+    let placed = false;
 
-    if (orientation === "horizontal") {
-      let endCoordinate = x + ship.length;
-      if (endCoordinate > 10) {
-        throw new Error("Error: ship is outside bounds.")
-      }
-      for (let i = x; i < endCoordinate; i++) {
-        if(this.board[y][i] !==null) {
-          throw new Error("Error: a ship has already been placed there.")
-        }
-        this.board[y][i] = ship;
-      }
+    while (!placed) {
 
-    } else if (orientation === "vertical") {
-      let endCoordinate = y + ship.length;
-      if (endCoordinate > 10) {
-        throw new Error("Error: ship is outside bounds.")
+
+      let {x, y, orientation} = this.randomizeShipLocation() //x and y denote starting position
+      if (orientation !== "vertical" && orientation !== "horizontal") {
+        throw new Error("Error: orientation must be vertical or horizontal.");
       }
-      for (let i = y; i < endCoordinate; i++) {
-        if(this.board[i][x] !==null) {
-          throw new Error("Error: a ship has already been placed there.")
+      try {
+
+        if (orientation === "horizontal") {
+          let endCoordinate = x + ship.length;
+          if (endCoordinate > 10) {
+            continue;
+          }
+          for (let i = x; i < endCoordinate; i++) {
+            if (this.board[y][i] !== null) {
+              throw new Error();
+            }
+          }
+
+          for (let i = x; i < endCoordinate; i++) {
+            this.board[y][i] = ship;
+          }
+
+        } else if (orientation === "vertical") {
+          let endCoordinate = y + ship.length;
+          if (endCoordinate > 10) {
+            continue;
+          }
+          for (let i = y; i < endCoordinate; i++) {
+            if (this.board[i][x] !== null) {
+              throw new Error();
+            }
+          }
+          for (let i = y; i < endCoordinate; i++) {
+            this.board[i][x] = ship;
+          }
         }
-        this.board[i][x] = ship
+        this.ships.push(ship);
+        placed = true;
+      } catch(err) {
+        continue;
       }
     }
-    this.ships.push(ship);
   }
+
+
 
   randomizeShipLocation(){
     const x = Math.floor(Math.random() *10);
@@ -62,11 +80,6 @@ class Gameboard{
     }
     this.missedAttacks.push([x, y])
     return false;
-  }
-
-
-  reportSinking(){
-
   }
 
   areAllShipsSunk(){
