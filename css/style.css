@@ -1,7 +1,32 @@
+:root {
+  --hover-red: #e63946ff;
+  --background-blue: #a8dadcff;
+  --sea-blue: #457b9dff;
+  --ship-deep-blue: #1359b9;
+}
+
 body{
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  text-align: center;
+  background-color: var(--background-blue);
+}
+
+header{
+  padding: 2rem;
+}
+
+.game-results--hidden {
+  visibility: hidden;
+}
+
+.winner {
+  height: 42px;
+  margin-block: 2rem;
+  font-size: 1.75rem;
 }
 
 #pageTitle {
@@ -13,11 +38,98 @@ body{
 
 .gameboard-container {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 8rem;
 }
 
-.alpha-coordinates{
-  display: flex;
-  gap: 30px;
+#player-gameboard{
+  display: grid;
+  grid-template-columns: repeat(11, 50px);
+  grid-template-rows: repeat(11, 50px);
+  gap: 4px;
+}
+
+#computer-gameboard{
+  display: grid;
+  grid-template-columns: repeat(11, 50px);
+  grid-template-rows: repeat(11, 50px);
+  gap: 4px;
+}
+
+
+.alpha-coordinates {
+  grid-column: 2 / -1;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  align-items: center;
+}
+
+.num-coordinates {
+  grid-row: 2 / -1;
+  display: grid;
+  align-items: center;
+}
+
+.board-squares {
+  display: grid;
+  grid-template-columns: repeat(10, min-content);
+  grid-area: 2 / 2 / -1 / -1;
+  gap: 4px;
+}
+
+.grid-square{
+  width: 50px;
+  aspect-ratio: 1;
+  border: 1px solid var(--sea-blue);
+  gap: 2px;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+}
+
+.grid-square-ship{
+  background-color: var(--ship-deep-blue);
+}
+
+.grid-square-computer{
+  cursor: pointer;
+}
+
+.grid-square-computer:hover{
+  border: 2px solid var(--hover-red);
+}
+
+grid-square--attacked{
+  border: 1px solid var(--hover-red);
+  background-color: var(--hover-red);
+  cursor: not-allowed;
+}
+
+grid-square--missed{
+  border: 1px solid var(--sea-blue) !important;
+  background-color: honeydew;
+  cursor: not-allowed;
+}
+
+.gameboard > p{
+  grid-column: 2 / -1;
+  margin-block: 1rem;
+}
+
+.gameboard > button{
+  grid-column: 2 / -1;
+  margin-inline: auto;
+ }
+
+.button{
+  background-color: honeydew;
+  border: none;
+  padding: 0.2rem 0.6rem;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.btn--hidden {
+  visibility: hidden;
 }
