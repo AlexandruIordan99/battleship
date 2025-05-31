@@ -45,13 +45,25 @@ const showPlayerShips = () => {
 const playerBoard = document.querySelector(".player-board")
 const computerBoard = document.querySelector(".computer-board")
 
-const registerComputerAttackingHuman = (attack, target) =>{
+const registerHumanAttackingComputer = (attack, target) =>{
     if(attack){
       target.classList("grid-square--attacked")
       return true;
     }
     target.classList("grid-square--missed")
     togglePlayerStates()
+}
+
+const registerComputerAttackingHuman = (attack, target) =>{
+    const square = playerBoard.children[y*10 + x];
+    if (attack){
+      square.classList.add("grid-square--attacked")
+      computerAttack()
+      return;
+    }
+
+    square.classList.add("grid-square--missed")
+  togglePlayerStates()
 }
 
 computerBoard.addEventListener("click", (event) => {
