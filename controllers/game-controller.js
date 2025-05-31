@@ -5,6 +5,13 @@ import Ship from "../game-classes/ship";
 let humanPlayer = new Player();
 let computerPlayer = new Player();
 
+import {
+  displayWinner,
+  initializeGrids,
+  showPlayerShips
+} from "./ui-controller";
+
+
 let activePlayer = humanPlayer;
 let defendingPlayer = computerPlayer;
 
@@ -40,7 +47,19 @@ const getRandomCoordinates = () => {
 }
 
 const computerAttack = () =>{
+  let coordinates;
+  if(getWinner()){
+    displayWinner();
+    return;
+  }
 
+  do{
+    coordinates = getRandomCoordinates();
+  } while (humanPlayer.board.receivedAttacks.some(
+      (innerArray) => JSON.stringify(innerArray) === JSON.stringify(coordinates))){
+    const [x, y] = coordinates;
+    const computerAttack = humanPlayer.gameboard.registerHit(x,y);
+  }
 }
 
 const getWinner = () => {
@@ -50,3 +69,27 @@ const getWinner = () => {
 }
 
 
+const startGame = () => {
+  activePlayer = humanPlayer;
+  defendingPlayer = computerPlayer;
+
+  activePlayer.board = new Gameboard();
+  defendingPlayer.board = new Gameboard();
+
+  populateGameboards();
+  initializeGrids();
+  showPlayerShips();
+}
+
+
+export {
+    humanPlayer,
+    computerPlayer,
+    getActivePlayer,
+    togglePlayerStates,
+    populateGameboards,
+    playerAttack,
+    computerAttack,
+    startGame,
+    getWinner,
+}
