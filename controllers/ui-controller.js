@@ -110,7 +110,7 @@ const displayWinner = () =>{
     const winner = getWinner()
   if(winner ===humanPlayer){
     winnerDiv.textContent = "Congratulations! You've won!"
-  } else{
+  } else if (winner === computerPlayer){
     winnerDiv.textContent = "That's too bad. You've lost!";
   }
   resultsDiv.classList.remove("game-results--hidden")
