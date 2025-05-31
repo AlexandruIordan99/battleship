@@ -18,8 +18,8 @@ let defendingPlayer = computerPlayer;
 const getActivePlayer = () => activePlayer;
 
 const togglePlayerStates = () => {
-  activePlayer === humanPlayer ? computerPlayer : humanPlayer
-  defendingPlayer === humanPlayer ? computerPlayer : humanPlayer
+  [activePlayer, defendingPlayer] = [defendingPlayer, activePlayer];
+
 }
 
 const placeShips = (player) => {
@@ -58,7 +58,7 @@ const computerAttack = () =>{
 
   do{
     coordinates = getRandomCoordinates();
-  } while (humanPlayer.board.receivedAttacks.some(
+  } while (humanPlayer.gameboard.receivedAttacks.some(
       (innerArray) => JSON.stringify(innerArray) === JSON.stringify(coordinates))){
     const [x, y] = coordinates;
     const computerAttack = humanPlayer.gameboard.registerHit(x,y);
@@ -76,8 +76,8 @@ const startGame = () => {
   activePlayer = humanPlayer;
   defendingPlayer = computerPlayer;
 
-  activePlayer.board = new Gameboard();
-  defendingPlayer.board = new Gameboard();
+  activePlayer.gameboard = new Gameboard();
+  defendingPlayer.gameboard = new Gameboard();
 
   populateGameboards();
   initializeGrids();
