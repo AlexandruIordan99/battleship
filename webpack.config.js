@@ -6,7 +6,7 @@ module.exports = {
   mode: "development",
   entry: "./controllers/ui-controller.js",
   output: {
-    filename: "main.js",
+    filename: "index.js",
     path: path.resolve(__dirname, "dist"),
     clean: true,
   },
