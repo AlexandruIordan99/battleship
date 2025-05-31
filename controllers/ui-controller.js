@@ -4,7 +4,7 @@ import {
   getActivePlayer,
   humanPlayer,
   computerPlayer,
-  toggleActivePlayer,
+  togglePlayerStates,
   playerAttack,
   computerAttack,
   getWinner,
@@ -51,7 +51,7 @@ const registerComputerAttackingHuman = (attack, target) =>{
       return true;
     }
     target.classList("grid-square--missed")
-    toggleActivePlayer()
+    togglePlayerStates()
 }
 
 computerBoard.addEventListener("click", (event) => {
