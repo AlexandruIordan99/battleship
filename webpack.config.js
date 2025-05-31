@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
-  entry: "./index.js",
+  entry: "./controllers/ui-controller.js",
   output: {
     filename: "main.js",
     path: path.resolve(__dirname, "dist"),
@@ -12,7 +12,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./template.html",
+      template: "./index.html",
     }),
   ],
   module: {
