@@ -12,7 +12,8 @@ import {
 } from "./game-controller.js"
 
 const grids = Array.from(document.getElementsByClassName("board-squares"));
-console.log(grids);
+
+
 
 const initializeGrids = () => {
   for (const [index, grid] of grids.entries()) {
@@ -48,28 +49,34 @@ const showPlayerShips = () => {
   }
 }
 
+
+const registerHumanAttackingComputer = (attack, square) =>{
+    if(attack){
+      square.classList.add("grid-square--attacked")
+      return true;
+    }
+    square.classList.add("grid-square--missed")
+    togglePlayerStates()
+    return attack;
+
+}
+
 const playerBoard = document.getElementById("player-gameboard")
 const computerBoard = document.getElementById("computer-gameboard")
 
-const registerHumanAttackingComputer = (attack, target) =>{
-    if(attack){
-      target.classList.add("grid-square--attacked")
-      return true;
-    }
-    target.classList.add("grid-square--missed")
-    togglePlayerStates()
-}
+const registerComputerAttackingHuman = (attack, square) =>{
 
-const registerComputerAttackingHuman = (attack, target) =>{
-    const square = playerBoard.children[y*10 + x];
     if (attack){
       square.classList.add("grid-square--attacked")
-      computerAttack()
-      return;
+      if(getWinner()){
+        displayWinner();
+      } else{
+        computerAttack();
+      }
+    } else{
+      square.classList.add("grid-square--missed")
+      togglePlayerStates()
     }
-
-    square.classList.add("grid-square--missed")
-  togglePlayerStates()
 }
 
 computerBoard.addEventListener("click", (event) => {
@@ -85,6 +92,9 @@ computerBoard.addEventListener("click", (event) => {
 
   const hit = playerAttack(square.dataset.x, square.dataset.y, square)
 
+  if (getWinner()) {
+    return;
+  }
   if (hit){
     return;
   }
@@ -94,7 +104,7 @@ computerBoard.addEventListener("click", (event) => {
 })
 
 const winnerDiv = document.querySelector(".winner")
-const resultsDiv = document.querySelector(".results")
+const resultsDiv = document.querySelector(".game-results")
 
 const displayWinner = () =>{
     const winner = getWinner()
