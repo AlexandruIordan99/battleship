@@ -66,6 +66,13 @@ const computerBoard = document.getElementById("computer-gameboard")
 
 const registerComputerAttackingHuman = (attack, square) =>{
 
+    const isAlreadyAttacked = square.classList.contains("grid-square--attacked")
+      || square.classList.contains("grid-square--missed");
+
+    if(isAlreadyAttacked){
+      computerAttack();
+    }
+
     if (attack){
       square.classList.add("grid-square--attacked")
       if(getWinner()){
