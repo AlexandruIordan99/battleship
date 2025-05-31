@@ -70,7 +70,7 @@ class Gameboard{
   }
 
   registerHit(x,y){
-    const hitSquare = this.board[x][y];
+    const hitSquare = this.board[y][x];
 
     this.receivedAttacks.push([x, y]);
 
