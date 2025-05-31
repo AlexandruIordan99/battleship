@@ -98,13 +98,13 @@ header{
   border: 2px solid var(--hover-red);
 }
 
-grid-square--attacked{
+.grid-square--attacked{
   border: 1px solid var(--hover-red);
   background-color: var(--hover-red);
   cursor: not-allowed;
 }
 
-grid-square--missed{
+.grid-square--missed{
   border: 1px solid var(--sea-blue) !important;
   background-color: honeydew;
   cursor: not-allowed;
