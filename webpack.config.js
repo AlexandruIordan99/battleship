@@ -7,7 +7,7 @@ module.exports = {
   entry: "./controllers/ui-controller.js",
   output: {
     filename: "index.js",
-    path: path.resolve(__dirname, "dist"),
+    path: '/',
     clean: true,
   },
   plugins: [
