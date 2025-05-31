@@ -38,8 +38,13 @@ const populateGameboards = () => {
 
 const playerAttack = (x, y, target) =>{
   hideResetButton();
+
   const playerAttack = computerPlayer.gameboard.registerHit(x,y);
-  displayWinner();
+
+  const currentWinner = getWinner()
+  if (currentWinner === humanPlayer){
+    displayWinner();
+  }
   return registerHumanAttackingComputer(playerAttack, target);
 }
 
@@ -61,15 +66,25 @@ const computerAttack = () =>{
     coordinates = getRandomCoordinates();
   } while (humanPlayer.gameboard.receivedAttacks.some(
       (innerArray) => JSON.stringify(innerArray) === JSON.stringify(coordinates))){
-    const [x, y] = coordinates;
-    const computerAttack = humanPlayer.gameboard.registerHit(x,y);
   }
+
+  const [x, y] = coordinates;
+  const playerSquare = document.querySelector("#player-gameboard .board-squares").children[y * 10 + x];
+  const computerAttack = humanPlayer.gameboard.registerHit(x,y);
+
+  registerComputerAttackingHuman(computerAttack, playerSquare);
+
+  if (getWinner()) {
+    displayWinner();
+  }
+
 }
 
 const getWinner = () => {
   if (defendingPlayer.gameboard.areAllShipsSunk() === true){
     return activePlayer;
   }
+  return undefined;
 }
 
 
