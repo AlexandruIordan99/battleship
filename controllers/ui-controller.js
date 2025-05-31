@@ -42,28 +42,34 @@ const showPlayerShips = () => {
   }
 }
 
-const playerBoard = document.querySelector(".board--player .board__squares")
-const computerBoard = document.querySelector(".board--computer .board__squares")
+const playerBoard = document.querySelector(".player-board .board__squares")
+const computerBoard = document.querySelector(".computer-board .board__squares")
 
-const registerComputerAttackingHuman = () =>{
+const registerComputerAttackingHuman = (attack, target) =>{
+
+}
+
+const registerHumanAttackingComputer = (attack, target) =>{
 
 }
 
-const registerHumanAttackingComputer = () =>{
-
-}
+const winnerDiv = document.querySelector(".winner")
+const resultsDiv = document.querySelector(".results")
 
 const displayWinner = () =>{
-
+    const winner = getWinner()
+  if(winner ===humanPlayer){
+    winnerDiv.textContent = "Congratulations! You've won!"
+  } else{
+    winnerDiv.textContent = "That's too bad. You've lost!";
+  }
+  resultsDiv.classList.remove("game-results--hidden")
 }
 
 
-const restartGame = () => {
-
-}
 
 
-const resetButton = document.querySelector("#reset-button");
+
 
 export{
   showPlayerShips,
