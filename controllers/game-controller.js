@@ -6,8 +6,8 @@ let humanPlayer = new Player();
 let computerPlayer = new Player();
 
 import {
-  displayWinner,
-  initializeGrids,
+  displayWinner, hideResetButton,
+  initializeGrids, registerComputerAttackingHuman, registerHumanAttackingComputer,
   showPlayerShips
 } from "./ui-controller";
 
@@ -36,7 +36,10 @@ const populateGameboards = () => {
 }
 
 const playerAttack = (x, y, target) =>{
+  hideResetButton();
   const playerAttack = computerPlayer.gameboard.registerHit(x,y);
+  displayWinner();
+  return registerHumanAttackingComputer(playerAttack, target);
 }
 
 const getRandomCoordinates = () => {
