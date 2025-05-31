@@ -14,7 +14,6 @@ import {
 const grids = Array.from(document.getElementsByClassName("board-squares"));
 
 
-
 const initializeGrids = () => {
   for (const [index, grid] of grids.entries()) {
     grid.textContent = "";
@@ -49,6 +48,7 @@ const showPlayerShips = () => {
   }
 }
 
+startGame()
 
 const registerHumanAttackingComputer = (attack, square) =>{
     if(attack){
