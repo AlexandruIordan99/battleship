@@ -66,7 +66,24 @@ const displayWinner = () =>{
   resultsDiv.classList.remove("game-results--hidden")
 }
 
+const resetButton = document.querySelector("#reset-button");
+resetButton.addEventListener("click", ()=>{
+  startGame();
+})
 
+const hideResetButton = () =>{
+  resetButton.classList.add("reset-button--hidden")
+}
+
+const showResetButton = () =>{
+  resetButton.classList.remove("reset-button--hidden")
+}
+
+const restartGame = () => {
+  resultsDiv.classList.add("game-results--hidden")
+  startGame()
+  showResetButton()
+}
 
 
 
