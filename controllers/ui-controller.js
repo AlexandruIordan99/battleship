@@ -42,8 +42,8 @@ const showPlayerShips = () => {
   }
 }
 
-const playerBoard = document.querySelector(".player-board .board__squares")
-const computerBoard = document.querySelector(".computer-board .board__squares")
+const playerBoard = document.querySelector(".player-board")
+const computerBoard = document.querySelector(".computer-board")
 
 const registerComputerAttackingHuman = (attack, target) =>{
 
