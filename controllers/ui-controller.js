@@ -45,8 +45,6 @@ const showPlayerShips = () => {
 const playerBoard = document.querySelector(".player-board")
 const computerBoard = document.querySelector(".computer-board")
 
-const hit = registerComputerAttackingHuman(square.dataset.x, square.dataset.y, square)
-
 const registerComputerAttackingHuman = (attack, target) =>{
     if(attack){
       target.classList("grid-square--attacked")
@@ -62,16 +60,20 @@ computerBoard.addEventListener("click", (event) => {
       !square.classList.contains("grid-square") ||
       square.classList.length > 2 ||
       getActivePlayer() === computerPlayer ||
-      getWinner())
+      getWinner()
+  ) {
     return;
+  }
+
+  const hit = playerAttack(square.dataset.x, square.dataset.y, square)
+
+  if (hit){
+    return;
+  }
+
+  computerAttack();
+
 })
-
-
-
-
-const registerHumanAttackingComputer = (attack, target) =>{
-
-}
 
 const winnerDiv = document.querySelector(".winner")
 const resultsDiv = document.querySelector(".results")
@@ -112,6 +114,5 @@ export{
   showPlayerShips,
   initializeGrids,
     registerComputerAttackingHuman,
-    registerHumanAttackingComputer,
     displayWinner,
 }
