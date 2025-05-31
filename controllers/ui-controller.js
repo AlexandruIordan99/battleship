@@ -140,12 +140,6 @@ const showResetButton = () =>{
   resetButton.classList.remove("reset-button--hidden")
 }
 
-const restartGame = () => {
-  resultsDiv.classList.add(".game-results--hidden")
-  startGame()
-  showResetButton()
-
-}
 
 export{
   showPlayerShips,
