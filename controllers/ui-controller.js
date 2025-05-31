@@ -45,9 +45,29 @@ const showPlayerShips = () => {
 const playerBoard = document.querySelector(".player-board")
 const computerBoard = document.querySelector(".computer-board")
 
-const registerComputerAttackingHuman = (attack, target) =>{
+const hit = registerComputerAttackingHuman(square.dataset.x, square.dataset.y, square)
 
+const registerComputerAttackingHuman = (attack, target) =>{
+    if(attack){
+      target.classList("grid-square--attacked")
+      return true;
+    }
+    target.classList("grid-square--missed")
+    toggleActivePlayer()
 }
+
+computerBoard.addEventListener("click", (event) => {
+  const square = event.target;
+  if(
+      !square.classList.contains("grid-square") ||
+      square.classList.length > 2 ||
+      getActivePlayer() === computerPlayer ||
+      getWinner())
+    return;
+})
+
+
+
 
 const registerHumanAttackingComputer = (attack, target) =>{
 
