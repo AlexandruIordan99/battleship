@@ -81,16 +81,20 @@ const registerComputerAttackingHuman = (attack, square) =>{
 
 computerBoard.addEventListener("click", (event) => {
   const square = event.target;
-  if(
-      !square.classList.contains("grid-square") ||
-      square.classList.length > 2 ||
-      getActivePlayer() === computerPlayer ||
-      getWinner()
-  ) {
+  const gridSquare = square.classList.contains("grid-square");
+
+  const isAlreadyAttacked = square.classList.contains("grid-square--attacked")
+      || square.classList.contains("grid-square--missed");
+  const isHumanTurn = getActivePlayer() === humanPlayer;
+  const gameHasWinner = !!getWinner();
+
+  if (!gridSquare || isAlreadyAttacked || !isHumanTurn || gameHasWinner) {
     return;
   }
 
-  const hit = playerAttack(square.dataset.x, square.dataset.y, square)
+  const x = square.dataset.x;
+  const y = square.dataset.y;
+  const hit = playerAttack(x, y, square)
 
   if (getWinner()) {
     return;
