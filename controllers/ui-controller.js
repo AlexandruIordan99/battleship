@@ -9,9 +9,10 @@ import {
   computerAttack,
   getWinner,
   startGame,
-} from "./game-controller"
+} from "./game-controller.js"
 
-const grids = document.querySelectorAll(".grid-square");
+const grids = Array.from(document.getElementsByClassName("board-squares"));
+console.log(grids);
 
 const initializeGrids = () => {
   for (const [index, grid] of grids.entries()) {
@@ -21,7 +22,12 @@ const initializeGrids = () => {
       for (let x = 0; x < 10; x++) {
         const gridSquare = document.createElement("div");
         gridSquare.classList.add("grid-square");
-        if (index === 1) {
+        if (index === 0) {
+          gridSquare.classList.add("grid-square-human");
+          gridSquare.dataset.y = y.toString();
+          gridSquare.dataset.x = x.toString();
+          grid.appendChild(gridSquare);
+        } else if (index === 1) {
           gridSquare.classList.add("grid-square-computer");
           gridSquare.dataset.y = y.toString();
           gridSquare.dataset.x = x.toString();
@@ -42,15 +48,15 @@ const showPlayerShips = () => {
   }
 }
 
-const playerBoard = document.querySelector(".player-board")
-const computerBoard = document.querySelector(".computer-board")
+const playerBoard = document.getElementById("player-gameboard")
+const computerBoard = document.getElementById("computer-gameboard")
 
 const registerHumanAttackingComputer = (attack, target) =>{
     if(attack){
-      target.classList("grid-square--attacked")
+      target.classList.add("grid-square--attacked")
       return true;
     }
-    target.classList("grid-square--missed")
+    target.classList.add("grid-square--missed")
     togglePlayerStates()
 }
 
@@ -100,7 +106,7 @@ const displayWinner = () =>{
   resultsDiv.classList.remove("game-results--hidden")
 }
 
-const resetButton = document.querySelector("#reset-button");
+const resetButton = document.getElementById("reset-button");
 resetButton.addEventListener("click", ()=>{
   startGame();
 })
@@ -114,13 +120,11 @@ const showResetButton = () =>{
 }
 
 const restartGame = () => {
-  resultsDiv.classList.add("game-results--hidden")
+  resultsDiv.classList.add(".game-results--hidden")
   startGame()
   showResetButton()
+
 }
-
-
-
 
 export{
   showPlayerShips,
