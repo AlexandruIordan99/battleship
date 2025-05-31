@@ -54,11 +54,11 @@ const registerHumanAttackingComputer = (attack, square) =>{
     if(attack){
       square.classList.add("grid-square--attacked")
       return true;
+    } else{
+      square.classList.add("grid-square--missed");
+      togglePlayerStates();
     }
-    square.classList.add("grid-square--missed")
-    togglePlayerStates()
-    return attack;
-
+    return false;
 }
 
 const playerBoard = document.getElementById("player-gameboard")
